@@ -4,29 +4,29 @@ import ReactDOM from 'react-dom';
 import SearchBar from './components/search_bar';// ./ means current dir
 import YTSearch from 'youtube-api-search';
 import VideoList from './components/video_list'
+import VideoDetail from './components/video_details'
 
 const API_KEY = 'AIzaSyDsrakeHLHfeYBQLC_uKUZ01Ae0BIEof-g';
 
 
 
-class  App extends Component {
+class App extends Component {
     constructor(props) {
         super(props);
         this.state = { videos: [] };
-
-        YTSearch({key: API_KEY, term: 'surfboards'}, (videos) =>{
-            this.setState({ videos});
+        YTSearch({ key: API_KEY, term: 'kpop' }, (videos) => {
+            this.setState({ videos });
         });
-        
-        
     }
 
 
-    render(){
+    render() {
         return (
             <div>
                 <SearchBar />
-                <VideoList videos={this.state.videos}/>
+                <VideoDetail video={this.state.videos[0]} />
+                <VideoList videos={this.state.videos} />
+
             </div>
         )
     }
